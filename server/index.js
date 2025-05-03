@@ -7,7 +7,7 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 const parser = require("socket.io-msgpack-parser");
 
-const CLIENT_URL = "http://localhost:5173"; // Replace with your client URL
+const CLIENT_URL = "http://localhost:5173";
 const PORT = 5000;
 
 app.use(
@@ -37,14 +37,16 @@ io.on("connection", (socket) => {
   socket.on("getElements", ({ elements, room }) => {
     socket.to(room).emit("setElements", elements);
   });
+
+  socket.on("chatMessage", ({ message, room }) => {
+    io.to(room).emit("chatMessage", message);
+  });
 });
 
 app.get("/", (req, res) => {
-  res.send(
-    `<marquee>To try the app visite : <a href="${CLIENT_URL}">${CLIENT_URL}</a></marquee>`
-  );
+  res.send("Hola!");
 });
 
 server.listen(PORT, () => {
-  console.log("Listen in port : " + PORT);
+  console.log(`Server is running on port ${PORT}`);
 });

@@ -60,7 +60,7 @@ export function createElement(x1, y1, x2, y2, style, tool) {
   if (tool === "text") {
     return {
       ...baseElement,
-      text: "hi",
+      text: "",
       fontSize: 16,
       fontColor: "#000000",
     };

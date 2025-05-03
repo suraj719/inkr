@@ -70,11 +70,11 @@ export default function AIFlowGenerator() {
       const content = response.choices[0].message.content;
       // Find JSON content in case the model adds explanatory text
       const jsonMatch = content.match(/\{[\s\S]*\}/);
-
+      
       if (!jsonMatch) {
         throw new Error("Could not find valid JSON in response");
       }
-
+      
       let flowData;
       try {
         flowData = JSON.parse(jsonMatch[0]);
@@ -93,13 +93,13 @@ export default function AIFlowGenerator() {
       const newElements = flowData.elements.map((element, index) => {
         // Use existing createElement helper function when possible
         const tool = element.type;
-
+        
         // Create element with proper structure
         return {
           id: `ai-${Date.now()}-${index}`,
           x1: element.x1,
           y1: element.y1,
-          x2: element.x2,
+          x2: element.x2, 
           y2: element.y2,
           text: element.text || "",
           tool: tool,
@@ -107,16 +107,16 @@ export default function AIFlowGenerator() {
           strokeColor: style.strokeColor || "#000000",
           strokeStyle: style.strokeStyle || "solid",
           fill: style.fill || "#ffffff",
-          opacity: style.opacity || 100,
+          opacity: style.opacity || 100
         };
       });
 
       // Update elements with the new array
-      setElements((prevElements) => {
+      setElements(prevElements => {
         // Completely replace with new elements
         return [...newElements];
       });
-
+      
       toast.success("Flow diagram generated successfully!");
       setShowPopup(false);
     } catch (error) {

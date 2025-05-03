@@ -6,6 +6,8 @@ import UndoRedo from "./UndoRedo";
 import Menu from "./Menu";
 import Collaboration from "./Collaboration";
 import AIFlowGenerator from "./AIFlowGenerator";
+import ChatPanel from "./ChatPanel";
+import DiagramDescriber from "./DiagramDescriber";
 
 export default function Ui() {
   const { selectedElement, selectedTool, style } = useAppContext();
@@ -17,6 +19,8 @@ export default function Ui() {
         <ToolBar />
         <div style={{ display: "flex", alignItems: "center" }}>
           <AIFlowGenerator />
+          <DiagramDescriber />
+          <ChatPanel />
           <Collaboration />
         </div>
       </header>

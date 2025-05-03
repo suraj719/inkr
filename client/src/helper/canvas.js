@@ -37,6 +37,7 @@ export const shapes = {
     ctx.lineTo(x2, y1 + height / 2);
     ctx.lineTo(x1 + width / 2, y2);
     ctx.lineTo(x1, y1 + height / 2);
+    ctx.closePath();
   },
   circle: (x1, y1, x2, y2, ctx) => {
     const width = x2 - x1;
@@ -55,8 +56,15 @@ export const shapes = {
     ctx.font = `${fontSize}px Arial`;
     ctx.fillStyle = "black";
     ctx.textBaseline = "top";
-    ctx.fillText(text, x1, y1);
+    if (text) {
+      ctx.fillText(text, x1, y1);
+    } else {
+      // Draw a placeholder cursor when text is empty
+      ctx.fillText("|", x1, y1);
+    }
   },
+  selection: () => {}, // Add empty function for selection tool
+  hand: () => {}, // Add empty function for hand tool
 };
 
 export function distance(a, b) {
@@ -183,6 +191,11 @@ export function drawFocuse(element, context, padding, scale) {
 }
 
 export function draw(element, context) {
+  if (!element || !element.tool || !shapes[element.tool]) {
+    console.warn("Invalid element or tool type:", element);
+    return;
+  }
+
   context.beginPath();
   const {
     tool,
@@ -197,6 +210,7 @@ export function draw(element, context) {
     opacity,
     text = "",
     fontSize = 16,
+    isEditing = false,
   } = element;
 
   context.lineWidth = strokeWidth;
@@ -209,7 +223,9 @@ export function draw(element, context) {
   if (strokeStyle == "solid") context.setLineDash([0, 0]);
 
   if (tool === "text") {
-    shapes[tool](x1, y1, x2, y2, context, text, fontSize);
+    if (!isEditing) {
+      shapes[tool](x1, y1, x2, y2, context, text, fontSize);
+    }
   } else {
     shapes[tool](x1, y1, x2, y2, context);
     context.fill();

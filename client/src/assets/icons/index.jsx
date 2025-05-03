@@ -369,11 +369,7 @@ export const VideoPlay = () => (
 );
 
 export const Stop = () => (
-  <svg
-    height={demention}
-    fill="currentColor"
-    viewBox="0 0 24 24"
-  >
+  <svg height={demention} fill="currentColor" viewBox="0 0 24 24">
     <rect x="6" y="6" width="16" height="16" rx="2" />
   </svg>
 );
@@ -383,11 +379,12 @@ export const Text = ({ className }) => (
     className={className}
     viewBox="0 0 24 24"
     fill="none"
+    height={15}
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M12 3L12 21M12 3L8 7M12 3L16 7M4 21H20"
-      stroke="currentColor"
+      d="M4 4H20M12 4V20"
+      stroke="black"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"

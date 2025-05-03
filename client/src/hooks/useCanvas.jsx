@@ -403,10 +403,13 @@ export default function useCanvas() {
 
   return {
     canvasRef,
+    dimension,
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
     handleWheel,
-    dimension,
+    translate,
+    scale,
+    scaleOffset,
   };
 }
