@@ -1,0 +1,82 @@
+.ai-flow-generator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ai-flow-generator .input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.ai-flow-generator input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 300px;
+  font-size: 14px;
+}
+
+.ai-flow-generator textarea {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: secondaryFont;
+  margin-bottom: 10px;
+}
+
+.ai-flow-generator textarea:focus {
+  outline: none;
+  border-color: #6965db;
+}
+
+.ai-flow-generator button {
+  padding: 8px 16px;
+  background: #211C6A;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.ai-flow-generator button:hover {
+  background: #2a2470;
+}
+
+.ai-flow-generator button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.ai-flow-generator button.loading {
+  position: relative;
+  color: transparent;
+}
+
+.ai-flow-generator button.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin: -8px 0 0 -8px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+} 
