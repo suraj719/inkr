@@ -53,6 +53,7 @@ export const shapes = {
   },
   text: (x1, y1, x2, y2, ctx, text = "", fontSize = 16) => {
     ctx.font = `${fontSize}px Arial`;
+    ctx.fillStyle = "black";
     ctx.textBaseline = "top";
     ctx.fillText(text, x1, y1);
   },
