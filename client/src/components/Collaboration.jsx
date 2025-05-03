@@ -5,6 +5,7 @@ import { useAppContext } from "../provider/AppStates";
 import { v4 as uuid } from "uuid";
 import { useSearchParams } from "react-router-dom";
 import { socket } from "../api/socket";
+import toast from "react-hot-toast";
 
 export default function Collaboration() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,6 +18,7 @@ export default function Collaboration() {
     setSearchParams({ room: sessionId });
     setSession(sessionId);
     socket.emit("join", sessionId);
+    toast.success("new session started!");
   };
 
   const endSession = () => {
@@ -25,6 +27,7 @@ export default function Collaboration() {
     setSession(null);
     setOpen(false);
     window.history.replaceState(null, null, "/");
+    toast.success("session ended!");
   };
 
   return (
@@ -72,6 +75,7 @@ function CreateSession({ startSession }) {
 function SessionInfo({ endSession }) {
   const copy = () => {
     navigator.clipboard.writeText(window.location.href);
+    toast.success("Link copied to clipboard");
   };
 
   return (
