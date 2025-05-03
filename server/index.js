@@ -7,7 +7,7 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 const parser = require("socket.io-msgpack-parser");
 
-const CLIENT_URL = "http://localhost:5173";
+const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
 const PORT = 5000;
 
 app.use(
