@@ -339,6 +339,7 @@ export const Image = () => (
     <path d="m21 15-5-5L5 21" />
   </svg>
 );
+
 export const Github = () => (
   <svg
     height={demention}
@@ -389,5 +390,27 @@ export const Text = ({ className }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
+  </svg>
+);
+
+export const GoogleDrive = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    height={demention}
+    fill="currentcolor"
+  >
+    <path d="M4.433 22l-2.933-5.077 6.933-12.001h5.867l-6.933 12.001h-2.934zm9.067-12.001h5.867l2.933 5.077-2.933 5.077h-5.867l2.933-5.077-2.933-5.077zm-2.933-5.077l2.933 5.077-2.933 5.077-2.933-5.077 2.933-5.077z" />
+  </svg>
+);
+
+export const Dropbox = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    height={demention}
+    fill="currentcolor"
+  >
+    <path d="M12 2L6 7l6 5-6 5 6 5 6-5-6-5 6-5-6-5zm-6 15l6 5 6-5-6-5-6 5z" />
   </svg>
 );

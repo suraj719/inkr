@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Delete, Download, Folder, MenuIcon, Xmark } from "../assets/icons";
 import { useAppContext } from "../provider/AppStates";
 import { saveElements, uploadElements } from "../helper/element";
+import CloudSync from "./CloudSync";
 
 export default function Menu() {
   const { elements, setElements } = useAppContext();
@@ -17,15 +18,21 @@ export default function Menu() {
         {show ? <Xmark /> : <MenuIcon />}
       </button>
 
-      {show && <MenuBox elements={elements} setElements={setElements} setShow={setShow} />}
+      {show && (
+        <MenuBox
+          elements={elements}
+          setElements={setElements}
+          setShow={setShow}
+        />
+      )}
     </div>
   );
 }
 
 function MenuBox({ elements, setElements, setShow }) {
   const uploadJson = () => uploadElements(setElements);
-  const saveAsPNG = () => saveElements(elements, 'png');
-  const saveAsINKR = () => saveElements(elements, 'inkr');
+  const saveAsPNG = () => saveElements(elements, "png");
+  const saveAsINKR = () => saveElements(elements, "inkr");
   const reset = () => setElements([]);
 
   return (

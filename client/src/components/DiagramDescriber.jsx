@@ -38,29 +38,29 @@ export default function DiagramDescriber() {
       Keep the description professional and easy to understand.`;
 
       // Format elements for the AI
-      const formattedElements = elements.map(element => ({
+      const formattedElements = elements.map((element) => ({
         type: element.tool,
         text: element.text || "",
         position: {
           x1: element.x1,
           y1: element.y1,
           x2: element.x2,
-          y2: element.y2
+          y2: element.y2,
         },
         style: {
           strokeWidth: element.strokeWidth,
           strokeColor: element.strokeColor,
           strokeStyle: element.strokeStyle,
           fill: element.fill,
-          opacity: element.opacity
-        }
+          opacity: element.opacity,
+        },
       }));
 
       const response = await client.chat({
         model: "mistral-tiny",
         messages: [
           { role: "system", content: systemPrompt },
-          { role: "user", content: JSON.stringify(formattedElements, null, 2) }
+          { role: "user", content: JSON.stringify(formattedElements, null, 2) },
         ],
       });
 
@@ -115,20 +115,27 @@ export default function DiagramDescriber() {
               <h2>Diagram Description</h2>
               <div>
                 <p>
-                  Generate a detailed description of your current diagram using AI.
+                  Generate a detailed description of your current diagram using
+                  AI.
                 </p>
               </div>
-              <div className="collabGroup">
-                <label htmlFor="description">Generated Description</label>
-                <textarea
-                  id="description"
-                  value={description}
-                  readOnly
-                  placeholder="The description will appear here..."
-                  rows={10}
-                  style={{ width: "100%", resize: "vertical" }}
-                />
-              </div>
+              {description && (
+                <div className="collabGroup">
+                  <label htmlFor="description">Generated Description</label>
+                  <textarea
+                    id="description"
+                    value={description}
+                    readOnly
+                    placeholder="The description will appear here..."
+                    rows={10}
+                    style={{
+                      width: "100%",
+                      resize: "vertical",
+                      outline: "none",
+                    }}
+                  />
+                </div>
+              )}
               <button
                 onClick={generateDescription}
                 disabled={isGenerating}
@@ -143,4 +150,4 @@ export default function DiagramDescriber() {
       )}
     </>
   );
-} 
+}

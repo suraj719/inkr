@@ -81,15 +81,7 @@ main.ui footer > div {
 }
 
 html::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #d2d2d2;
-  height: 1px;
-  width: 100%;
-  pointer-events: none;
-  z-index: -1;
+  display: none;
 }
 html::after {
   content: "";
@@ -122,6 +114,13 @@ button:active {
 
 section.toolbar {
   display: flex;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  max-width: fit-content;
 }
 
 section.toolbar > div {
@@ -130,40 +129,29 @@ section.toolbar > div {
   gap: var(--gap);
 }
 
-section.toolbar > div:not(:last-child)::after {
-  content: "";
-  position: relative;
-  top: 0;
-  left: 0;
-  background: #c0c0c0;
-  width: 1px;
-  height: 60%;
-  border-radius: 50%;
-  margin: auto;
-  margin-right: var(--gap);
-}
-
 section.toolbar .toolbutton {
   display: grid;
   place-content: center;
   color: var(--primary-color);
-
-  width: 30px;
-  height: 30px;
-
+  width: 35px;
+  height: 35px;
   background: none;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
+
 section.toolbar .toolbutton:hover {
   background: rgba(224, 223, 255, 0.5);
+  transform: translateY(-1px);
 }
 
 section.toolbar .toolbutton.selected,
 section.toolbar .toolbutton.lock[data-lock="true"] {
   color: #030064;
   background: #e0dfffd5;
+  transform: translateY(-1px);
 }
 
 section.zoomOptions {
@@ -293,6 +281,7 @@ section.undoRedo > button {
 div.menu {
   position: relative;
   pointer-events: all;
+  z-index: 1000;
 }
 
 div.menu .menuBtn {
@@ -305,6 +294,12 @@ div.menu .menuBtn {
   width: 40px;
   height: 40px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+div.menu .menuBtn:hover {
+  background: #e0e0e0;
+  transform: translateY(-1px);
 }
 
 div.menu .menuItems {
@@ -316,6 +311,10 @@ div.menu .menuItems {
   width: 250px;
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  top: 100%;
+  left: 0;
 }
 
 div.menu .menuItems .menuItem * {
@@ -482,7 +481,11 @@ section.collaborationBox h2 {
 .collabGroup {
   width: 100%;
 }
-
+.collabGroup #description {
+  border: 1px solid rgb(121, 117, 117);
+  border-radius: 10px;
+  padding: 5px;
+}
 .collabLink {
   display: flex;
   justify-content: space-between;
@@ -676,3 +679,440 @@ section.collaborationBox h2 {
   background: #5a57c0;
 }
 
+/* Chat Panel Responsive Styles */
+@media (max-width: 768px) {
+  .chatBox {
+    width: 90vw;
+    height: 80vh;
+    max-width: 350px;
+  }
+
+  .message {
+    max-width: 90%;
+  }
+
+  .chat-input-form {
+    padding: 5px;
+  }
+
+  .chat-input {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .send-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  main.ui header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  main.ui header > div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .collaborateButton,
+  .chat-button,
+  .describe-button,
+  .generate-flow-button {
+    width: 100%;
+    height: 35px;
+    font-size: 13px;
+    padding: 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .toolbar {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatBox {
+    width: 95vw;
+    height: 85vh;
+  }
+
+  .message-content {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .username {
+    font-size: 0.7em;
+  }
+
+  .message-time {
+    font-size: 0.6em;
+  }
+
+  main.ui header > div {
+    grid-template-columns: 1fr;
+  }
+
+  .collaborateButton,
+  .chat-button,
+  .describe-button,
+  .generate-flow-button {
+    height: 32px;
+    font-size: 12px;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  main.ui {
+    padding: 10px;
+  }
+
+  main.ui header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  main.ui header > div {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .toolbar {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .toolbutton {
+    width: 40px;
+    height: 40px;
+  }
+
+  main.ui footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  main.ui footer > div {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  main.ui {
+    padding: 5px;
+  }
+
+  .toolbar {
+    gap: 2px;
+  }
+
+  .toolbutton {
+    width: 35px;
+    height: 35px;
+  }
+
+  .collaborateButton,
+  .chat-button {
+    padding: 0 15px;
+    height: 35px;
+    font-size: 14px;
+  }
+}
+
+/* Footer and Action Buttons Styles */
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.action-buttons {
+  display: none; /* Hide by default for desktop */
+}
+
+.control-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Desktop Layout */
+@media (min-width: 769px) {
+  main.ui header {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+  }
+
+  div.menu {
+    position: relative;
+  }
+
+  div.menu .menuItems {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    margin-top: 0;
+  }
+
+  .collaborateButton,
+  .chat-button,
+  .describe-button,
+  .generate-flow-button {
+    height: 40px;
+    font-size: 14px;
+    padding: 0 15px;
+    margin-right: 8px;
+    white-space: nowrap;
+    min-width: fit-content;
+  }
+
+  .toolbar {
+    margin: 10px auto;
+  }
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+  main.ui {
+    padding: 10px;
+  }
+
+  main.ui header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 0;
+  }
+
+  div.menu {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+
+  div.menu .menuBtn {
+    width: 35px;
+    height: 35px;
+  }
+
+  div.menu .menuItems {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 5px);
+    margin-top: 0;
+  }
+
+  .toolbar {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 0;
+    padding: 6px;
+  }
+
+  .toolbutton {
+    width: 32px;
+    height: 32px;
+  }
+
+  main.ui footer {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .action-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  .collaborateButton,
+  .chat-button,
+  .describe-button,
+  .generate-flow-button {
+    width: 100%;
+    height: 32px;
+    font-size: 12px;
+    padding: 0 8px;
+    margin: 0;
+  }
+
+  .control-buttons {
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  main.ui {
+    padding: 5px;
+  }
+
+  div.menu {
+    left: 5px;
+    top: 5px;
+  }
+
+  div.menu .menuBtn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .toolbar {
+    gap: 2px;
+    padding: 4px;
+  }
+
+  .toolbutton {
+    width: 30px;
+    height: 30px;
+  }
+
+  .action-buttons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .collaborateButton,
+  .chat-button,
+  .describe-button,
+  .generate-flow-button {
+    height: 28px;
+    font-size: 11px;
+    padding: 0 6px;
+  }
+}
+
+.cloud-services {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.cloud-service-button {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  width: 100%;
+}
+
+.cloud-service-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #6965db;
+}
+
+.cloud-service-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.service-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+}
+
+.service-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.service-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.service-name {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.service-description {
+  color: #dbd9d9;
+  font-size: 14px;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #6965db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 12px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.template-button {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.template-button:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
