@@ -2,7 +2,7 @@
 
 **INKR** is a modern, collaborative web application for creating and editing flow diagrams with real-time collaboration and AI-powered features. Whether you're planning, brainstorming, or documenting workflows, INKR offers an intuitive and powerful canvas to bring your ideas to life.
 
-🌐 [Live URL](https://inkr7.vercel.app) &nbsp;&nbsp;&nbsp;🎬 [Watch Demo](https://youtu.be/demo-link)
+🌐 [Live URL](https://inkr7.vercel.app) &nbsp;&nbsp;&nbsp;🎬 [Watch Demo](https://youtu.be/stdTOOgYQGM)
 
 ---
 
